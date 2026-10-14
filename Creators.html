@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creators | SKYPOLIS</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #214765;
+      background: linear-gradient(#DDF5FF, #FFFFFF);
+      line-height: 1.7;
+    }
+    
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      color: #176B99;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #299FD6;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .creator-team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .creator-card {
+      padding: 24px;
+      text-align: center;
+      background: white;
+      border: 2px solid #B7E8FA;
+      border-radius: 22px;
+    }
+
+    .creator-avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #DDF5FF;
+      border: 3px solid #83D8FF;
+      color: #176B99;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    
+.creator-details {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.creator-details p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #176B99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.creator-details i {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+
+    .creator-role {
+      color: #299FD6;
+      font-weight: bold;
+    }
+
+    .creator-bio {
+      color: #587B95;
+    }
+
+    .creator-links a {
+      color: #176B99;
+      font-weight: bold;
+    }
+
+    .coming-soon {
+      border-style: dashed;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <main>
+    <a class="back-button" href="index.html">← Back to SKYPOLIS</a>
+
+    <h1>Meet the Creators ☁️</h1>
+    <p>
+      Every great world starts with an idea.
+      Here's the person creating SKYPOLIS, with room for
+      future collaborators.
+    </p>
+
+    <div class="creator-team">
+
+      <article class="creator-card">
+        <div class="creator-avatar" aria-hidden="true">N</div>
+
+        
+<div class="creator-details">
+  <p><i data-lucide="user-round"></i><span>Real Name: Navilan S K</span></p>
+  <p><i data-lucide="star"></i><span>Stage Name: Lúcaa</span></p>
+</div>
+
+
+        <p class="creator-role">Creator &amp; Developer</p>
+
+        <p class="creator-bio">
+          Tye Individual Mind Building the SKYPOLIS universe, its characters,
+          gameplay, and adventures.
+        </p>
+
+        <div class="creator-links">
+          <!-- Add real social links here when ready. -->
+        </div>
+      </article>
+
+      <article class="creator-card coming-soon">
+        <div class="creator-avatar" aria-hidden="true">+</div>
+
+        <h2>Future Collaborators</h2>
+        <p class="creator-role">Coming in the future</p>
+
+        <p class="creator-bio">
+          Reserved for members who genuinely dedicate to Skypolis, join as a member, give extraordinary ideas, and other sorts of a Helping hand.
+        </p>
+      </article>
+
+    </div>
+    <section class="membership-info">
+  <h2>Membership Information</h2>
+  <p>
+    The rules, regulations, eligibility criteria, and procedures
+    for joining SKYPOLIS as an official member have yet to be
+    established. Further information will be announced once
+    these details are finalized.
+  </p>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,1162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#83D8FF">
+  <title>SKYPOLIS — Infinooty Studios</title>
+
+  <style>
+    :root {
+      --sky: #83D8FF;
+      --sky-light: #DDF5FF;
+      --cloud: #FFFFFF;
+      --blue: #299FD6;
+      --blue-dark: #176B99;
+      --yellow: #FFE16B;
+      --yellow-dark: #F4C943;
+      --purple: #A99AFF;
+      --green: #70DDB0;
+      --pink: #FFB8D5;
+      --text: #214765;
+      --muted: #587B95;
+      --border: #B7E8FA;
+      --panel: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background: var(--sky-light);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 7%;
+    }
+
+    .brand {
+      color: var(--blue-dark);
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 1000;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: #F1B923;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.94rem;
+      color: var(--blue-dark);
+    }
+
+    .nav-links a:hover {
+      color: #E39A13;
+    }
+
+    
+
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 125px 22px 100px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 50% 5%, #FFFFFF 0%, transparent 38%),
+        linear-gradient(180deg, #83D8FF 0%, #B9ECFF 57%, #EAFBFF 100%);
+    }
+
+    .sun {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      right: 12%;
+      top: 17%;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 15px #FFE16B33, 0 0 70px #FFF0A4;
+      z-index: -1;
+    }
+
+    .cloud {
+      position: absolute;
+      width: 155px;
+      height: 45px;
+      background: white;
+      border-radius: 50px;
+      opacity: 0.86;
+      z-index: -1;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 67px;
+      height: 67px;
+      left: 22px;
+      bottom: 12px;
+    }
+
+    .cloud::after {
+      width: 88px;
+      height: 88px;
+      right: 18px;
+      bottom: 5px;
+    }
+
+    .cloud-one {
+      top: 24%;
+      left: 8%;
+      transform: scale(1.15);
+    }
+
+    .cloud-two {
+      top: 43%;
+      right: 7%;
+      transform: scale(0.8);
+    }
+
+    .cloud-three {
+      bottom: 12%;
+      left: 28%;
+      transform: scale(1.5);
+      opacity: 0.96;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 850px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 15px;
+      border: 2px solid #FFFFFF;
+      border-radius: 100px;
+      background: #FFFFFFAA;
+      color: var(--blue-dark);
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      color: var(--blue-dark);
+      font-size: clamp(3.1rem, 10vw, 7.3rem);
+      font-weight: 1000;
+      line-height: 1;
+      letter-spacing: -3px;
+      text-shadow: 0 6px 0 #FFFFFF;
+    }
+
+    .hero h1 .balloon {
+      display: inline-block;
+      color: #F0B927;
+      text-shadow: 0 5px 0 #FFFFFF;
+      transform: rotate(-7deg);
+    }
+
+    .hero h2 {
+      margin-top: 18px;
+      font-size: clamp(1.25rem, 3.5vw, 2rem);
+      color: #347CA5;
+    }
+
+    .hero p {
+      max-width: 610px;
+      margin: 15px auto 27px;
+      color: #355E7B;
+      font-size: 1.08rem;
+    }
+
+    /* BUTTONS */
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 47px;
+      padding: 12px 20px;
+      border: 2px solid transparent;
+      border-radius: 15px;
+      font-family: inherit;
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 0 #21476520;
+    }
+
+    .button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .button-primary {
+      background: var(--yellow);
+      border-color: var(--yellow-dark);
+      color: #654B00;
+      box-shadow: 0 5px 0 #E4BD42;
+    }
+
+    .button-blue {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .button-white {
+      background: white;
+      border-color: var(--border);
+      color: var(--blue-dark);
+    }
+
+    .hero .button {
+      font-size: 1.08rem;
+      padding: 15px 28px;
+    }
+
+    .hero-note {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #477794;
+    }
+
+    /* CLOUD-LIKE SECTION DIVIDER */
+
+    .cloud-divider {
+      height: 45px;
+      margin-top: -35px;
+      position: relative;
+      z-index: 2;
+      background:
+        radial-gradient(ellipse at 8% 100%, white 0 38px, transparent 39px),
+        radial-gradient(ellipse at 22% 100%, white 0 52px, transparent 53px),
+        radial-gradient(ellipse at 42% 100%, white 0 35px, transparent 36px),
+        radial-gradient(ellipse at 61% 100%, white 0 53px, transparent 54px),
+        radial-gradient(ellipse at 81% 100%, white 0 43px, transparent 44px),
+        radial-gradient(ellipse at 98% 100%, white 0 53px, transparent 54px);
+      pointer-events: none;
+    }
+
+    /* SHARED SECTIONS */
+
+    section.content-section {
+      padding: 80px 7%;
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      margin-bottom: 14px;
+      color: var(--blue-dark);
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-weight: 1000;
+      line-height: 1.15;
+    }
+
+    .section-description {
+      max-width: 680px;
+      margin-bottom: 35px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .center .section-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: white;
+    }
+
+    .about-card {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about-copy {
+      padding: 15px 0;
+    }
+
+    .about-copy p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .sky-art {
+      position: relative;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 30px;
+      background: linear-gradient(160deg, #B8ECFF, #E9F9FF);
+    }
+
+    .sky-art .big-cloud {
+      font-size: clamp(6rem, 16vw, 10rem);
+      filter: drop-shadow(0 9px 0 #8ACFEA);
+    }
+
+    .sky-art .mini-star {
+      position: absolute;
+      color: #E9B928;
+      font-size: 2rem;
+    }
+
+    .star-one {
+      top: 20%;
+      left: 17%;
+    }
+
+    .star-two {
+      right: 15%;
+      top: 25%;
+    }
+
+    .star-three {
+      bottom: 16%;
+      right: 23%;
+    }
+
+    /* DOWNLOADS */
+
+    .downloads {
+      background: #EAF9FF;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .download-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 25px;
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 6px 0 #B7E8FA70;
+    }
+
+    .download-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      border-radius: 15px;
+      background: var(--sky-light);
+      font-size: 1.65rem;
+    }
+
+    .download-card h3 {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+      color: var(--blue-dark);
+    }
+
+    .download-card p {
+      flex-grow: 1;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* WIKI */
+
+    .wiki {
+      background: white;
+    }
+
+    .wiki-panel {
+      padding: 36px;
+      border-radius: 28px;
+      background: linear-gradient(120deg, #DDF5FF, #F4F0FF);
+      text-align: center;
+    }
+
+    .wiki-panel .wiki-emoji {
+      margin-bottom: 10px;
+      font-size: 3rem;
+    }
+
+    .wiki-panel p {
+      max-width: 580px;
+      margin: 12px auto 22px;
+      color: var(--muted);
+    }
+
+    /* SAFETY */
+
+    .safety {
+      background: #EAFBF3;
+    }
+
+    .safety-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 28px;
+      border: 2px solid #B5EBD0;
+      border-radius: 23px;
+      background: white;
+    }
+
+    .safety-icon {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #D9F9E9;
+      font-size: 1.8rem;
+    }
+
+    .safety-card h3 {
+      margin-bottom: 7px;
+      color: #247957;
+      font-size: 1.3rem;
+    }
+
+    .safety-card p {
+      color: var(--muted);
+    }
+
+    /* CREATORS */
+
+    .creators {
+      background: #FFF9E4;
+    }
+
+    .creator-panel {
+      padding: 38px 25px;
+      border: 2px solid #F8E7A5;
+      border-radius: 28px;
+      background: white;
+      text-align: center;
+    }
+
+    .creator-panel .creator-emoji {
+      margin-bottom: 8px;
+      font-size: 3rem;
+    }
+
+    .creator-panel p {
+      max-width: 560px;
+      margin: 10px auto 22px;
+      color: var(--muted);
+    }
+
+    /* SOCIALS AND FOOTER */
+
+    .social-section {
+      padding: 55px 7% 25px;
+      background: #C7F0FF;
+      text-align: center;
+    }
+
+    .social-section h2 {
+      margin-bottom: 8px;
+      color: var(--blue-dark);
+      font-size: 1.8rem;
+    }
+
+    .social-section > p {
+      margin-bottom: 23px;
+      color: var(--muted);
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .social-button {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #A5DFF4;
+      border-radius: 18px;
+      background: white;
+      color: var(--blue-dark);
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .social-button:hover {
+      transform: translateY(-4px) rotate(-3deg);
+      background: var(--yellow);
+    }
+
+    .social-button svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .legal-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .legal-buttons a {
+      display: inline-block;
+      padding: 6px 11px;
+      border: 1px solid #A5DFF4;
+      border-radius: 9px;
+      background: #FFFFFFAA;
+      color: #416A83;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .legal-buttons a:hover {
+      background: white;
+      color: var(--blue-dark);
+    }
+
+    footer {
+      padding: 18px 7% 25px;
+      background: #C7F0FF;
+      color: #587B95;
+      text-align: center;
+      font-size: 0.84rem;
+    }
+
+    footer strong {
+      color: var(--blue-dark);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 16px 5%;
+      }
+
+      .brand {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .sun {
+        width: 70px;
+        height: 70px;
+        right: 7%;
+        top: 14%;
+      }
+
+      .cloud-one {
+        left: -60px;
+      }
+
+      .cloud-two {
+        right: -70px;
+      }
+
+      section.content-section {
+        padding: 60px 6%;
+      }
+
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+
+      .sky-art {
+        min-height: 200px;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wiki-panel {
+        padding: 28px 20px;
+      }
+
+      .safety-card {
+        padding: 22px;
+        gap: 14px;
+      }
+
+      .safety-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+/* CREATORS TEAM */
+.creator-team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.creator-card {
+  padding: 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #B7E8FA;
+  border-radius: 22px;
+  box-shadow: 0 8px 20px rgba(23, 107, 153, 0.08);
+}
+
+.creator-avatar {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #DDF5FF;
+  border: 3px solid #83D8FF;
+  color: #176B99;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.creator-card h3 {
+  margin: 8px 0;
+  color: #176B99;
+  font-size: 1.35rem;
+}
+
+.creator-role {
+  color: #299FD6;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.creator-bio {
+  color: #587B95;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.creator-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.creator-links a {
+  display: inline-block;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #DDF5FF;
+  color: #176B99;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.creator-links a:hover {
+  background: #83D8FF;
+}
+
+.creator-coming-soon {
+  border-style: dashed;
+  background: rgba(221, 245, 255, 0.55);
+}
+    
+.creators-preview {
+  padding: 32px 24px;
+  text-align: left;
+}
+
+.creators-preview h2 {
+  margin-top: 0;
+}
+
+
+  .play-notice {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  width: calc(100% - 32px);
+  max-width: 480px;
+  padding: 16px 20px;
+  background: var(--blue-dark);
+  color: white;
+  border: 2px solid var(--sky);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px #21476540;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.6;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 15px);
+  transition: opacity 0.25s ease,
+              transform 0.25s ease,
+              visibility 0.25s;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.play-notice.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.creators-button {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #299FD6;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.creators-button:hover {
+  background: #176B99;
+  transform: translateY(-2px);
+}
+
+  message {
+  padding: 16px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto.;
+  }
+
+  #play-now {
+  background: var(--blue);
+  color: white;
+  border: 2px solid var(--blue-dark);
+}
+
+#play-now:hover {
+  background: var(--blue-dark);
+}
+.Sequel {
+  padding: 16px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto.;
+  background: #EEE5FF
+}
+
+.Sequel {
+  border: #9B72E8
+}
+  
+.Sequel {
+  color: #6840A5
+}
+
+
+  </style>
+  }
+</head>
+  
+
+<>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="#home">INFINOOTY<span>®</span></a>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#wiki">Wiki</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="cloud cloud-one" aria-hidden="true"></div>
+    <div class="cloud cloud-two" aria-hidden="true"></div>
+    <div class="cloud cloud-three" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <span class="eyebrow">☁️ A WORLD ABOVE THE CLOUDS</span>
+
+      <h1>SKYP<span class="balloon">🎈</span>LIS</h1>
+
+      <h2>Your next adventure is up there.</h2>
+
+      <p>
+        Explore and Discover the SKYPOLIS Universe, a platformer
+        where you can have infinite Fun!
+      </p>
+
+      <button type="button" class="button" id="play-now">
+  PLAY NOW
+      </button>
+
+      <div class="hero-note">
+        Made with imagination by Infinooty Studios ⭐
+      </div>
+    </div>
+  </header>
+
+  <div class="cloud-divider" aria-hidden="true"></div>
+
+  <!-- ABOUT -->
+  <section class="content-section about" id="about">
+    <div class="section-inner about-card">
+      <div class="about-copy">
+        <span class="eyebrow">WELCOME TO SKYPOLIS</span>
+
+        <h2 class="section-heading">
+          The sky isn't the limit.
+        </h2>
+
+        <p>
+          Discover a world above the clouds, full of unexpected
+          adventures, unusual characters, and surprises waiting
+          around every corner.
+        </p>
+
+        <p>
+          Jump in, explore, and find out what makes SKYPOLIS
+          a world of its own.
+        </p>
+
+        <a class="button button-blue" href="#wiki">
+          Explore the Universe →
+        </a>
+      </div>
+
+      <div class="sky-art" aria-label="Decorative cloud illustration">
+        <span class="mini-star star-one" aria-hidden="true">✦</span>
+        <span class="mini-star star-two" aria-hidden="true">✧</span>
+        <span class="big-cloud" aria-hidden="true">☁️</span>
+        <span class="mini-star star-three" aria-hidden="true">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section class="content-section downloads" id="downloads">
+    <div class="section-inner">
+      <div class="center">
+        <span class="eyebrow">YOUR ADVENTURE AWAITS</span>
+        <h2 class="section-heading">Take to the skies!</h2>
+        <p class="section-description">
+          Choose your platform and get ready to explore.
+        </p>
+      </div>
+
+      <div class="download-grid">
+
+        <article class="download-card">
+          <div class="download-icon" aria-hidden="true">🍎</div>
+          <h3>App Store</h3>
+          <p>For your Apple devices.</p>
+          <a class="button button-blue" href="https://www.apple.com/app-store/">
+            Download on the App Store
+          </a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-icon" aria-hidden="true">🤖</div>
+          <h3>Google Play</h3>
+          <p>Ready for your Android device.</p>
+          <a class="button button-blue" href="https://play.google.com/store/games">
+            Get it on Google Play
+          </a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-icon" aria-hidden="true">🪟</div>
+          <h3>Windows</h3>
+          <p>Bring the adventure to your PC.</p>
+          <a class="button button-white" href="https://apps.microsoft.com/">
+            Download for Windows
+          </a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-icon" aria-hidden="true">💻</div>
+          <h3>macOS</h3>
+          <p>Explore SKYPOLIS on your Mac.</p>
+          <a class="button button-white" href="https://www.apple.com/mac/">
+            Download for macOS
+          </a>
+        </article>
+          <p class="message">⚠ For now, these buttons only lead to the respected platforms, The Skypolis download link will be added once the game is released, stay tuned!</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WIKI -->
+  <section class="content-section wiki" id="wiki">
+    <div class="section-inner wiki-panel">
+      <div class="wiki-emoji" aria-hidden="true">📚☁️</div>
+      <h2 class="section-heading">Curious about SKYPOLIS?</h2>
+      <p>
+        Visit the wiki to explore more about the universe,
+        its characters, and the world beyond the clouds.
+      </p>
+      <a class="button button-primary" href="https://vivoria.miraheze.org/">
+        Visit Wiki →
+      </a>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="content-section safety" id="safety">
+    <div class="section-inner">
+      <div class="center">
+        <span class="eyebrow">SAFETY MATTERS</span>
+        <h2 class="section-heading">Fun should feel safe.</h2>
+        <p class="section-description">
+          Adventures are better when players can feel secure.
+        </p>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-icon" aria-hidden="true">🛡️</div>
+        <div>
+          <h3>We are safe</h3>
+          <p>
+            SKYPOLIS is Fun, but also has all the security
+            mechanisms in order to protect accounts
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATORS -->
+  
+
+
+<section id="creators" class="creators-preview">
+  <h2>Creators ☁️</h2>
+  <p>
+    The mind behind SKYPOLIS, the helpers who lend a hand,
+    the idea givers who inspire its world, and those who
+    dedicate something to it.
+  </p>
+
+  <a href="Creators.html" class="creators-button">
+    See them all →
+  </a>
+</section>
+  
+
+<div class="Sequel">
+  <h2>
+    <i data-lucide="balloon"></i>
+    SEQUELS
+    <i data-lucide="balloon"></i>
+  </h2>
+  <p>The story shall continue unless its final chapter is officially declared.</p>
+</div>
+
+
+
+  <!-- SOCIAL MEDIA -->
+  
+<section class="social-section" aria-label="Social media">
+  <h2>Stay in the loop! ☁️</h2>
+  <p>Follow Infinooty Studios for more adventures.</p>
+
+  <div class="social-buttons">
+    <!-- YouTube -->
+    <a class="social-button"
+       href="https://www.youtube.com/"
+       aria-label="YouTube"
+       title="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a class="social-button"
+       href="https://www.instagram.com/"
+       aria-label="Instagram"
+       title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round"
+           xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+      </svg>
+    </a>
+
+    <!-- Discord -->
+    <a class="social-button"
+       href="https://discord.com/"
+       aria-label="Discord"
+       title="Discord">
+      <svg viewBox="0 0 24 24" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.7 5.2A18 18 0 0 0 15.3 4l-.6 1.2a16 16 0 0 0-5.4 0L8.7 4a18 18 0 0 0-4.4 1.2C1.5 9.3.8 13.3 1.2 17.2a18 18 0 0 0 5.4 2.7l1.2-2a12 12 0 0 1-1.9-.9l.5-.4a13 13 0 0 0 11.2 0l.5.4a12 12 0 0 1-1.9.9l1.2 2a18 18 0 0 0 5.4-2.7c.5-4.5-.8-8.5-3.1-12ZM8.7 14.4c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6Zm6.6 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="legal-buttons">
+    <a href="Terms.html">Terms of Service</a>
+    <a href="Help.html">Help service</a>
+    <a href="Privacy.html">Privacy policy</a>
+  </div>
+</section>
+  <div id="play-notice" class="play-notice"
+     role="status" aria-live="polite">
+  HEY! The download links will be added once SKYPOLIS
+  is released on all platforms. Stay tuned!
+  </div>
+  
+<script>
+  const playButton = document.getElementById("play-now");
+  const playNotice = document.getElementById("play-notice");
+
+  let playNoticeTimer;
+
+  playButton.addEventListener("click", function () {
+    playNotice.classList.add("show");
+
+    clearTimeout(playNoticeTimer);
+
+    playNoticeTimer = setTimeout(function () {
+      playNotice.classList.remove("show");
+    }, 2000);
+  });
+</script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+
+<footer>
+  <p>© <span id="year"></span> <strong>Infinooty Studios</strong>. All skies reserved. ☁️</p>
+  <p>SKYPOLIS is a work in progress. Platform availability may change.</p>
+</footer>
+</body>
+</html>
